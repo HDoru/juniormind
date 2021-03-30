@@ -6,7 +6,7 @@ namespace Json
     {
         public static bool IsJsonString(string input)
         {
-            return HasContent(input) && IsDoubleQuoted(input);
+            return HasContent(input) && IsDoubleQuoted(input) && !ContainsControlCharacters(input);
         }
 
         public static bool IsDoubleQuoted(string input)
@@ -18,6 +18,12 @@ namespace Json
         static bool HasContent(string input)
         {
             return !string.IsNullOrEmpty(input);
+        }
+
+        static bool ContainsControlCharacters(string input)
+        {
+            const char N = '\\';
+            return !input.Contains(N);
         }
     }
 }
