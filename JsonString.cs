@@ -47,6 +47,10 @@ namespace Json
                 {
                     return !result;
                 }
+                 else if (input[i + 1] == '\\')
+                {
+                    return !result;
+                }
             }
 
             return result;
