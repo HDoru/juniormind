@@ -20,10 +20,36 @@ namespace Json
             return !string.IsNullOrEmpty(input);
         }
 
-        static bool ContainsControlCharacters(string input)
+            static bool ContainsControlCharacters(string input)
         {
             const char N = '\\';
+
+            if (input.Contains(N))
+            {
+                return !ContainSpecialCharacters(input);
+            }
+
             return !input.Contains(N);
+        }
+
+        static bool ContainSpecialCharacters(string input)
+        {
+            const bool result = false;
+            const int SecondPosition = 2;
+            int i = input.IndexOf('\\');
+            if (i > -1)
+            {
+                if (input[i + 1] == '"' && input[i + SecondPosition] == '"')
+                {
+                    return !result;
+                }
+                else if (input[i + 1] == '/')
+                {
+                    return !result;
+                }
+            }
+
+            return result;
         }
         
     }
