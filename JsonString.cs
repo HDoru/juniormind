@@ -48,6 +48,7 @@ namespace Json
             lista.Add('r');
             lista.Add('t');
             int i = input.IndexOf('\\');
+            klhklghh
             if (i > -1)
             {
                 foreach (char c in lista)
