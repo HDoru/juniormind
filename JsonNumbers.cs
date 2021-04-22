@@ -9,17 +9,17 @@ namespace Json
                 && IsValidNumber(input);
         }
 
-        public static bool IsDigitsOnly(string input)
+        static bool IsDigitsOnly(string str)
         {
-            foreach (char c in input)
+            foreach (char c in str)
             {
-                if (c < '0' || c < '9')
+                if (c < '0' || c > '9')
                 {
-                    return true;
+                    return false;
                 }
             }
 
-            return false;
+            return true;
         }
 
         static int CountSpecificCharacter(string input, char specificcharacter)
@@ -44,7 +44,7 @@ namespace Json
         }
 
         static bool CanBeFractional(string input)
-            {
+        {
             string firststring = string.Empty;
             string secondstring = string.Empty;
 
@@ -64,14 +64,19 @@ namespace Json
                 input = input.Remove(0, 1);
             }
 
-            if (input.Contains('.'))
+            if (input.Contains('.') && !input.ToLower().Contains('e'))
             {
-                return false;
+                return CanBeFractional(input);
             }
 
-            if (input.Contains('e') || input.Contains('E'))
+            if (input.ToLower().Contains('e') && !input.Contains('.'))
             {
                 return Exponential(input);
+            }
+
+            if (input.IndexOf('.') < input.ToLower().IndexOf('e'))
+            {
+                return CanContainFractionalAndExponential(input);
             }
 
             return IsDigitsOnly(input);
@@ -92,7 +97,6 @@ namespace Json
 
         static bool VerifyExponentNumber(string input)
         {
-            string numberwithoutminus = input;
             if (!HasContent(input))
             {
                 return false;
@@ -100,15 +104,37 @@ namespace Json
 
             if (input[0] == '-' || input[0] == '+')
             {
-                numberwithoutminus = input.Remove(0, 1);
+                input = input.Remove(0, 1);
             }
 
-            if (numberwithoutminus.Contains('.'))
+            return IsDigitsOnly(input) && HasContent(input);
+        }
+
+        static void BreakStringInTwoExponential(string input, ref string firstpartofinput, ref string secondpartofinput)
+        {
+            int indexofpoint = input.ToLower().IndexOf('e');
+            firstpartofinput = input.Substring(0, indexofpoint);
+            secondpartofinput = input.Substring(indexofpoint + 1, input.Length - 1 - indexofpoint);
+        }
+
+        static bool CanContainFractionalAndExponential(string input)
             {
-                return CanBeFractional(numberwithoutminus);
+            if (!input.ToLower().Contains('e') || !input.Contains('.'))
+            {
+                return true;
             }
 
-            return IsDigitsOnly(numberwithoutminus) && HasContent(numberwithoutminus);
+            string firstpartofstring = string.Empty;
+            string secondpartofstring = string.Empty;
+            int indexofexponent = input.ToLower().IndexOf('e');
+            int indexofpoint = input.IndexOf('.');
+            if (indexofexponent < indexofpoint)
+            {
+                return false;
+            }
+
+            BreakStringInTwoExponential(input, ref firstpartofstring, ref secondpartofstring);
+            return IsDigitsOnly(secondpartofstring) && CanBeFractional(firstpartofstring);
         }
 
         static void ExponentNumber(string input, ref string exponent)
