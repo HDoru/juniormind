@@ -9,6 +9,27 @@ namespace Json
                 && IsValidNumber(input);
         }
 
+        static bool IsValidFractional(string input)
+        {
+            if (input == string.Empty)
+            {
+                return true;
+            }
+
+            return input.StartsWith(".") && IsDigitsOnly(input.Substring(1, input.Length - 1));
+        }
+
+        static bool IsValidExponential(string input)
+        {
+            if (input == string.Empty)
+            {
+                return true;
+            }
+
+            VerifyExponentMarkNumber(ref input);
+            return input.ToLower().StartsWith("e") && IsDigitsOnly(input.Substring(1, input.Length - 1));
+        }
+
         static bool IsDigitsOnly(string str)
         {
             foreach (char c in str)
@@ -22,48 +43,9 @@ namespace Json
             return HasContent(str);
         }
 
-        static bool IsValidNumber(string input)
+        static bool HasContent(string input)
         {
-            string wholeNumber = string.Empty;
-            string fractionalNumber = string.Empty;
-            string exponentialNumber = string.Empty;
-            if (input[0] == '-')
-            {
-                input = input.Remove(0, 1);
-            }
-
-            if (CanBeFractional(input) && CanBeExponential(input))
-            {
-                if (input.IndexOf('.') > input.ToLower().IndexOf('e'))
-                {
-                    return false;
-                }
-
-                BreakStringInFractional(input, ref wholeNumber, ref fractionalNumber);
-
-                BreakStringInExponential(fractionalNumber, ref fractionalNumber, ref exponentialNumber);
-            }
-            else if (CanBeFractional(input))
-            {
-                BreakStringInFractional(input, ref wholeNumber, ref fractionalNumber);
-            }
-            else if (CanBeExponential(input))
-            {
-                BreakStringInExponential(input, ref wholeNumber, ref exponentialNumber);
-                VerifyExponentMarkNumber(ref exponentialNumber);
-            }
-
-            if (fractionalNumber == string.Empty && exponentialNumber == string.Empty)
-            {
-                return IsDigitsOnly(input);
-            }
-
-            return VerifyParts(wholeNumber, fractionalNumber, exponentialNumber);
-        }
-
-        static bool CanBeExponential(string input)
-        {
-            return CountSpecificCharacter(input.ToLower(), 'e') == 1;
+            return !string.IsNullOrEmpty(input);
         }
 
         static bool CanBeFractional(string input)
@@ -71,42 +53,9 @@ namespace Json
             return CountSpecificCharacter(input, '.') == 1;
         }
 
-        static bool VerifyParts(string wholeNumber, string fractionalNumber, string exponentialNumber)
+        static bool CanBeExponential(string input)
         {
-            if (fractionalNumber != string.Empty && exponentialNumber != string.Empty)
-            {
-                return IsDigitsOnly(wholeNumber) && IsFractional(fractionalNumber) && IsExponential(exponentialNumber);
-            }
-            else if (exponentialNumber != string.Empty)
-            {
-                return IsExponential(exponentialNumber) && IsDigitsOnly(wholeNumber);
-            }
-
-            return IsFractional(fractionalNumber) && IsDigitsOnly(wholeNumber);
-        }
-
-        static bool IsFractional(string input)
-        {
-            return input.StartsWith(".") && IsDigitsOnly(input.Substring(1, input.Length - 1));
-        }
-
-        static bool IsExponential(string input)
-        {
-            return input.ToLower().StartsWith("e") && IsDigitsOnly(input.Substring(1, input.Length - 1));
-        }
-
-        static void BreakStringInFractional(string input, ref string firstpartofinput, ref string secondpartofinput)
-        {
-            int indexofpoint = input.IndexOf('.');
-            firstpartofinput = input.Substring(0, indexofpoint);
-            secondpartofinput = input.Substring(indexofpoint, input.Length - indexofpoint);
-        }
-
-        static void BreakStringInExponential(string input, ref string firstpartofinput, ref string secondpartofinput)
-        {
-            int indexofpoint = input.ToLower().IndexOf('e');
-            firstpartofinput = input.Substring(0, indexofpoint);
-            secondpartofinput = input.Substring(indexofpoint, input.Length - indexofpoint);
+            return CountSpecificCharacter(input.ToLower(), 'e') == 1;
         }
 
         static int CountSpecificCharacter(string input, char specificcharacter)
@@ -123,19 +72,81 @@ namespace Json
             return count;
         }
 
-        static void VerifyExponentMarkNumber(ref string input)
+        static string IntegerPart(string input, int indexofDot, int indexOfExponent)
+        {
+            if (CanBeFractional(input))
             {
+                return input.Substring(0, indexofDot);
+            }
+            else if (CanBeExponential(input))
+            {
+                return input.Substring(0, indexOfExponent);
+            }
+
+            return input;
+        }
+
+        static string FractionPart(string input, int indexofDot, int indexOfExponent)
+        {
+            if (CanBeFractional(input) && CanBeExponential(input) && indexofDot < indexOfExponent)
+            {
+                return input.Substring(indexofDot, indexOfExponent - indexofDot);
+            }
+            else if (CanBeFractional(input))
+            {
+                return input.Substring(indexofDot, input.Length - indexofDot);
+            }
+
+            return string.Empty;
+        }
+
+        static string ExponentPart(string input, int indexOfExponent)
+        {
+            if (CanBeExponential(input))
+            {
+                return input.Substring(indexOfExponent, input.Length - indexOfExponent);
+            }
+
+            return string.Empty;
+        }
+
+        static bool IsValidNumber(string input)
+        {
+            int indexOfDot = input.IndexOf('.');
+            int indexOfExponent = input.IndexOfAny("eE".ToCharArray());
+
+            string wholeNumber = IntegerPart(input, indexOfDot, indexOfExponent);
+            string fractionalNumber = FractionPart(input, indexOfDot, indexOfExponent);
+            string exponentialNumber = ExponentPart(input, indexOfExponent);
+
+            return IsValidInteger(wholeNumber)
+                && IsValidFractional(fractionalNumber)
+                && IsValidExponential(exponentialNumber);
+        }
+
+        static bool IsValidInteger(string wholeNumber)
+        {
+            if (!NumberDoesNotStartWithZero(wholeNumber))
+            {
+                return false;
+            }
+
+            if (wholeNumber[0] == '-')
+            {
+                wholeNumber = wholeNumber.Remove(0, 1);
+            }
+
+            return IsDigitsOnly(wholeNumber);
+        }
+
+        static void VerifyExponentMarkNumber(ref string input)
+        {
             if (!input.Contains('+') && !input.Contains('-'))
             {
                 return;
             }
 
             input = input.Remove(1, 1);
-        }
-
-        static bool HasContent(string input)
-        {
-            return !string.IsNullOrEmpty(input);
         }
 
         static bool NumberDoesNotStartWithZero(string input)
