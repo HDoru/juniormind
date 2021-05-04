@@ -5,7 +5,6 @@ namespace Json
         public static bool IsJsonNumber(string input)
         {
             return HasContent(input)
-                && NumberDoesNotStartWithZero(input)
                 && IsValidNumber(input);
         }
 
