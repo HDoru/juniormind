@@ -6,8 +6,8 @@ namespace SoccerTeamsRanking
 {
     class SoccerTeam
     {
-        private int id;
-        private string name;
+        private int id { get; set; }
+        private string name { get; set; }
 
 
         public SoccerTeam(int id, string name)
@@ -16,5 +16,6 @@ namespace SoccerTeamsRanking
             this.name = name;
         }
 
+        SoccerTeam soccerTeam1 = new SoccerTeam(1, "FCSB");
     }
 }
