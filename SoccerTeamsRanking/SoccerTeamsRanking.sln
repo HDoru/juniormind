@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoccerTeamsRanking", "SoccerTeamsRanking\SoccerTeamsRanking.csproj", "{8D11D056-46FA-40F1-B38C-237D4BAC7854}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoccerTeamsRankingFacts", "SoccerTeamsRankingFacts\SoccerTeamsRankingFacts.csproj", "{5C682D05-BE37-466A-8503-CDA57E661E01}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8D11D056-46FA-40F1-B38C-237D4BAC7854}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D11D056-46FA-40F1-B38C-237D4BAC7854}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D11D056-46FA-40F1-B38C-237D4BAC7854}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D11D056-46FA-40F1-B38C-237D4BAC7854}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C682D05-BE37-466A-8503-CDA57E661E01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C682D05-BE37-466A-8503-CDA57E661E01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C682D05-BE37-466A-8503-CDA57E661E01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C682D05-BE37-466A-8503-CDA57E661E01}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B2696EF4-0EB4-4861-8B10-5AC2D1562E8E}
+	EndGlobalSection
+EndGlobal
