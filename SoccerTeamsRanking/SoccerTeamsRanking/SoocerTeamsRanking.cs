@@ -6,20 +6,56 @@ using SoccerTeamsRanking;
 
 namespace SoccerTeamsRanking
 {
-    class SoccerTeamsRanking
+    public class TeamsRanking
     {
-        private int position { get; set; }
-        private SoccerTeam []soccerTeams { get; set; }
-        private int points { get; set; }
 
-        public SoccerTeamsRanking(int position, SoccerTeam []soccerTeams, int points)
+       private SoccerTeam[] soccerTeams { get; set; }
+       
+      
+
+        public TeamsRanking( SoccerTeam []soccerTeams)
         {
-            this.position = position;
+          
+           
             this.soccerTeams = soccerTeams;
-            this.points = points;
+            
         }
 
-       
-       
+
+
+
+
+     
+
+    
+        public TeamsRanking AddNewTeam(SoccerTeam soccerTeam,SoccerTeam [] soccerTeamsRanking)
+        {
+            SoccerTeam[] newTeamList = new SoccerTeam[soccerTeamsRanking.Length+ 1];
+            int position = newTeamList.Length;
+
+            for (int i = 0; i < soccerTeamsRanking.Length + 1; i++)
+            {
+                if (i < position - 1)
+                    newTeamList[i] = soccerTeamsRanking[i];
+                else if (i == position - 1)
+                    newTeamList[i] = soccerTeam;
+            }
+
+
+
+            return new TeamsRanking(newTeamList);
+
+        }
+
+
+
+        
+
+
+     
+
+        
     }
+
+    
 }

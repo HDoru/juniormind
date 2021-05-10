@@ -4,18 +4,21 @@ using System.Text;
 
 namespace SoccerTeamsRanking
 {
-    class SoccerTeam
+   public  class SoccerTeam
     {
-        private int id { get; set; }
-        private string name { get; set; }
+
+        private string name;
+
+        private int points;
 
 
-        public SoccerTeam(int id, string name)
+        public SoccerTeam(string name, int id)
         {
-            this.id = id;
+            
             this.name = name;
+            this.points = id;
         }
 
-        SoccerTeam soccerTeam1 = new SoccerTeam(1, "FCSB");
+   
     }
 }
