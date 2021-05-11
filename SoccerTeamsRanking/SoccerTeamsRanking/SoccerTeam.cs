@@ -7,9 +7,9 @@ namespace SoccerTeamsRanking
    public  class SoccerTeam
     {
 
-        private readonly string name;
+        private  string name;
 
-        private readonly int points;
+        private  int points;
 
 
         public SoccerTeam(string name, int points)
@@ -24,6 +24,10 @@ namespace SoccerTeamsRanking
             return points < soccerTeam.points;
         }
 
+        public void AddPointsToTeam(int pointstoadd)
+        {
+             points +=pointstoadd;
+        }
    
     }
 }

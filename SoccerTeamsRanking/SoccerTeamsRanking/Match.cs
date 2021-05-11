@@ -23,16 +23,16 @@ namespace SoccerTeamsRanking
         {
             if(hometeamgoals > awayteamgoals)
             {
-                hometeam.AddPoints(3);
+                hometeam.AddPointsToTeam(3);
             }
             else if (hometeamgoals < awayteamgoals)
             {
-                awayteam.AddPoints(3);
+                awayteam.AddPointsToTeam(3);
             }
             else
             {
-                hometeam.AddPoints(1);
-                awayteam.AddPoints(1);
+                hometeam.AddPointsToTeam(1);
+                awayteam.AddPointsToTeam(1);
             }
 
         }
