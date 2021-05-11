@@ -22,7 +22,32 @@ namespace SoccerTeamsRankingFacts
             Assert.Equal(ucluj,teamsRanking.GetValueFromSpecificIndex(0));
             
 
+        }
 
+        [Fact]
+        public void  GetSoccerTeamFromSpecificIndex()
+        {
+            SoccerTeam ucluj = new SoccerTeam("UCLUJ", 19);
+            SoccerTeam[] soccerTeams = new SoccerTeam[1];
+            TeamsRanking teamsRanking = new TeamsRanking(soccerTeams);
+            soccerTeams[0] = ucluj;
+            Assert.Equal(ucluj, teamsRanking.GetValueFromSpecificIndex(0));
+
+        }
+
+        [Fact]
+        public void GetSpecificIndexForSoccerTeam()
+        {
+            SoccerTeam ucluj = new SoccerTeam("UCLUJ", 19);
+            SoccerTeam cfr = new SoccerTeam("CFR", 10);
+            SoccerTeam craiova = new SoccerTeam("Craiova", 7);
+            SoccerTeam[] soccerTeams = new SoccerTeam[2];
+            TeamsRanking teamsRanking = new TeamsRanking(soccerTeams);
+            soccerTeams[0] = ucluj;
+            soccerTeams[1] = cfr;
+            Assert.Equal(1, teamsRanking.GetPositionForSoccerTeam(cfr));
+            Assert.Equal(0, teamsRanking.GetPositionForSoccerTeam(ucluj));
+            Assert.Equal(-1, teamsRanking.GetPositionForSoccerTeam(craiova));
 
         }
     }

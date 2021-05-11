@@ -21,9 +21,6 @@ namespace SoccerTeamsRanking
             
         }
 
-
-
-    
         public void AddNewTeam(SoccerTeam soccerTeam)
         {
             SoccerTeam[] newSoccerTeams = new SoccerTeam[soccerTeams.Length];
@@ -39,7 +36,18 @@ namespace SoccerTeamsRanking
             return soccerTeams[index];
         }
 
-        
+        public int GetPositionForSoccerTeam(SoccerTeam soccerTeam)
+        {
+            for (int i = 0; i <= soccerTeams.Length-1; i++)
+            {
+                if(soccerTeams[i] == soccerTeam)
+                {
+                    return i;
+                }
+            }
+            return -1;
+
+        }
     }
 
     
