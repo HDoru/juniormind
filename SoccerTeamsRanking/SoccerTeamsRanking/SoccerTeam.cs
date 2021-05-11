@@ -9,7 +9,7 @@ namespace SoccerTeamsRanking
 
         private  string name;
 
-        private  int points;
+        private int points;
 
 
         public SoccerTeam(string name, int points)
