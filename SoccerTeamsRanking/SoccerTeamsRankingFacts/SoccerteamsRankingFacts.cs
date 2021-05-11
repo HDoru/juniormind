@@ -10,48 +10,17 @@ namespace SoccerTeamsRankingFacts
     {
 
         [Fact]
-        public void Test1()
+        public void AddTeamsToRanking()
         {
-            SoccerTeam s1 = new SoccerTeam("FCSB", 12);
-            SoccerTeam s2 = new SoccerTeam("CFR", 10);
-            SoccerTeam s3 = new SoccerTeam("CSU", 15);
-            SoccerTeam[] soccerTeam = new SoccerTeam[2];
-            SoccerTeam[] soccerTeam1 = new SoccerTeam[3];
 
-            TeamsRanking teamsRanking = new TeamsRanking(soccerTeam);
-            soccerTeam[0] = s1;
-            soccerTeam[1] = s2;
-
-            soccerTeam1[0] = s1;
-            soccerTeam1[1] = s2;
-            soccerTeam1[2] = s3;
-
-
-            TeamsRanking teamsRanking2 = new TeamsRanking(soccerTeam1);
-
-
-
-           
-
-            Assert.Equal(teamsRanking2, teamsRanking.AddNewTeam(s3, soccerTeam));
-
-           
-              
+            SoccerTeam ucluj = new SoccerTeam("UCLUJ",19);
+            SoccerTeam cfr = new SoccerTeam("CFR", 10);
+            SoccerTeam[] soccerTeams = new SoccerTeam[0];
+            TeamsRanking teamsRanking = new TeamsRanking(soccerTeams);
+            teamsRanking.AddNewTeam(ucluj);
+            teamsRanking.AddNewTeam(cfr);
+            Assert.Equal(ucluj,teamsRanking.GetValueFromSpecificIndex(0));
             
-
-
-           
-
-            
-            
-            
-
-
-          
-
-            
-
-            ;
 
 
 

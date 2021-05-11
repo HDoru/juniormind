@@ -23,36 +23,21 @@ namespace SoccerTeamsRanking
 
 
 
-
-
-     
-
     
-        public TeamsRanking AddNewTeam(SoccerTeam soccerTeam,SoccerTeam [] soccerTeamsRanking)
+        public void AddNewTeam(SoccerTeam soccerTeam)
         {
-            SoccerTeam[] newTeamList = new SoccerTeam[soccerTeamsRanking.Length+ 1];
-            int position = newTeamList.Length;
-
-            for (int i = 0; i < soccerTeamsRanking.Length + 1; i++)
-            {
-                if (i < position - 1)
-                    newTeamList[i] = soccerTeamsRanking[i];
-                else if (i == position - 1)
-                    newTeamList[i] = soccerTeam;
-            }
-
-
-
-            return new TeamsRanking(newTeamList);
+            SoccerTeam[] newSoccerTeams = new SoccerTeam[soccerTeams.Length];
+            Array.Copy(soccerTeams, newSoccerTeams, soccerTeams.Length);
+            Array.Resize(ref newSoccerTeams, soccerTeams.Length + 1);
+            newSoccerTeams[soccerTeams.Length] = soccerTeam;
+            soccerTeams = newSoccerTeams;
 
         }
 
-
-
-        
-
-
-     
+        public SoccerTeam GetValueFromSpecificIndex(int index)
+        {
+            return soccerTeams[index];
+        }
 
         
     }

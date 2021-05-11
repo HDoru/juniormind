@@ -7,16 +7,16 @@ namespace SoccerTeamsRanking
    public  class SoccerTeam
     {
 
-        private string name;
+        private readonly string name;
 
-        private int points;
+        private readonly int points;
 
 
-        public SoccerTeam(string name, int id)
+        public SoccerTeam(string name, int points)
         {
             
             this.name = name;
-            this.points = id;
+            this.points = points;
         }
 
    
