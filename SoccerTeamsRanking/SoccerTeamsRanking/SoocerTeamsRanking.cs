@@ -21,6 +21,8 @@ namespace SoccerTeamsRanking
             
         }
 
+
+
         public void AddNewTeam(SoccerTeam soccerTeam)
         {  
             SoccerTeam[] temp= soccerTeams;
@@ -28,10 +30,13 @@ namespace SoccerTeamsRanking
             temp[soccerTeams.Length] = soccerTeam;
             soccerTeams = temp;
             Sort();
+        }
 
-
-
-
+        public void Play(SoccerTeam hometeam,int hometeamgoals, SoccerTeam awayteam, int awayteamgoals)
+        {
+            Match match = new Match(hometeam, awayteam, hometeamgoals, awayteamgoals);
+            match.UpdateRanking();
+            Sort();
         }
 
         public SoccerTeam GetValueFromSpecificIndex(int index)
