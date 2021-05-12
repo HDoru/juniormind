@@ -13,7 +13,7 @@ namespace SoccerTeamsRankingFacts
         {
             SoccerTeam ucluj = new SoccerTeam("UCLUJ", 19);
             SoccerTeam cfr = new SoccerTeam("CFR", 10);
-            Assert.True(cfr.MorePoints(ucluj));
+            Assert.True(cfr.LessPointsThan(ucluj));
         }
     }
 }

@@ -34,6 +34,7 @@ namespace SoccerTeamsRanking
                 hometeam.AddPointsToTeam(1);
                 awayteam.AddPointsToTeam(1);
             }
+            
 
         }
     }

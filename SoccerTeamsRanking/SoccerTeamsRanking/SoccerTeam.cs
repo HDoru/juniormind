@@ -19,7 +19,7 @@ namespace SoccerTeamsRanking
             this.points = points;
         }
 
-       public  bool MorePoints( SoccerTeam soccerTeam)
+       public  bool LessPointsThan( SoccerTeam soccerTeam)
         {
             return points < soccerTeam.points;
         }
