@@ -58,18 +58,37 @@ namespace SoccerTeamsRanking
         }
         public void Sort()
         {
-            SoccerTeam temp;
-            for (int j = 0; j <= soccerTeams.Length - 2; j++)
+            for (int i = 0; i < soccerTeams.Length - 1; i++)
             {
-                for (int i = 0; i <= soccerTeams.Length - 2; i++)
+                for (int j = 0; j < soccerTeams.Length - i - 1; j++)
                 {
-                    if (soccerTeams[i].LessPointsThan(soccerTeams[i + 1])){
-                        temp = soccerTeams[i + 1];
-                        soccerTeams[i + 1] = soccerTeams[i];
-                        soccerTeams[i] = temp;
+                    if (soccerTeams[j].LessPointsThan(soccerTeams[j + 1]))
+                    {
+                        Swap(j, j + 1);
                     }
                 }
+
+              
             }
+        }
+
+         void Swap( int firstIndex, int secondIndex)
+        {
+            (int minIndex, int maxIndex) = GetMinMaxIndex(firstIndex, secondIndex);
+
+            SoccerTeam temp = soccerTeams[minIndex];
+            soccerTeams[minIndex] = soccerTeams[maxIndex];
+            soccerTeams[maxIndex] = temp;
+        }
+
+        static (int minIndex, int maxIndex) GetMinMaxIndex(int firstIndex, int secondIndex)
+        {
+            if (firstIndex > secondIndex)
+            {
+                return (secondIndex, firstIndex);
+            }
+
+            return (firstIndex, secondIndex);
         }
 
 
