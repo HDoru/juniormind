@@ -60,15 +60,16 @@ namespace SoccerTeamsRanking
         {
             for (int i = 0; i < soccerTeams.Length - 1; i++)
             {
-                for (int j = 0; j < soccerTeams.Length - i - 1; j++)
+                bool swap = true;
+                for (int j = 0; (j < soccerTeams.Length - 1) && swap; j++)
                 {
                     if (soccerTeams[j].LessPointsThan(soccerTeams[j + 1]))
                     {
                         Swap(j, j + 1);
+                        swap = false;
                     }
                 }
 
-              
             }
         }
 
