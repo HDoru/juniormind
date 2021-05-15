@@ -96,8 +96,8 @@ namespace SoccerTeamsRankingFacts
             teamsRanking.AddNewTeam(ucluj);
             teamsRanking.AddNewTeam(cfr);
             teamsRanking.AddNewTeam(craiova);
-            teamsRanking.Play(craiova, 2, ucluj, 2);
-            Assert.Equal(1, teamsRanking.GetPositionForSoccerTeam(craiova));
+            teamsRanking.Play(cfr, 2, ucluj, 2);
+            Assert.Equal(1, teamsRanking.GetPositionForSoccerTeam(cfr));
 
         }
 

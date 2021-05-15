@@ -75,22 +75,14 @@ namespace SoccerTeamsRanking
 
          void Swap( int firstIndex, int secondIndex)
         {
-            (int minIndex, int maxIndex) = GetMinMaxIndex(firstIndex, secondIndex);
+           
 
-            SoccerTeam temp = soccerTeams[minIndex];
-            soccerTeams[minIndex] = soccerTeams[maxIndex];
-            soccerTeams[maxIndex] = temp;
+            SoccerTeam temp = soccerTeams[firstIndex];
+            soccerTeams[firstIndex] = soccerTeams[secondIndex];
+            soccerTeams[secondIndex] = temp;
         }
 
-        static (int minIndex, int maxIndex) GetMinMaxIndex(int firstIndex, int secondIndex)
-        {
-            if (firstIndex > secondIndex)
-            {
-                return (secondIndex, firstIndex);
-            }
-
-            return (firstIndex, secondIndex);
-        }
+      
 
 
     }
