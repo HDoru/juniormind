@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Json
 {
-    class Character : IPattern
+    public class Character : IPattern
     {
         readonly char pattern;
 
@@ -15,7 +15,7 @@ namespace Json
 
         public IMatch Match(string text)
         {
-            if(string.IsNullOrEmpty(text) || text[0]!= pattern)
+            if (string.IsNullOrEmpty(text) || text[0] != pattern)
             {
                 return new Match(text, false);
             }
