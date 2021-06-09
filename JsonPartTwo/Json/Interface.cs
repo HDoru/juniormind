@@ -4,13 +4,13 @@ using System.Text;
 
 namespace Json
 {
-   public interface IMatch
+    public interface IMatch
     {
         bool Success();
         string RemainingText();
     }
 
-  public interface IPattern
+    public interface IPattern
     {
         IMatch Match(string text);
        
