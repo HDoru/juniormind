@@ -19,7 +19,7 @@ namespace Json
             {
                 return new Match(text, false);
             }
-            return new Match(text, true);
+            return new Match(text[1..], true);
         }
     }
 }
