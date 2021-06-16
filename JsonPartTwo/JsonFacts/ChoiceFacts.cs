@@ -21,5 +21,24 @@ namespace JsonFacts
             Choice digits = new Choice(new Character('a'), new Json.Range('a', 'd'));
             Assert.False(digits.Match("").Success());
         }
+
+
+        [Fact]
+        public void IsInRangeReturnTrue()
+        {
+            Choice digits = new Choice(new Character('a'), new Json.Range('a', 'f'));
+            Assert.True(digits.Match("cd").Success());
+        }
+
+        [Fact]
+        public void IsCharacterReturnTrue()
+        {
+            Choice digits = new Choice(new Character('g'), new Json.Range('a', 'f'));
+            Assert.True(digits.Match("gd").Success());
+        }
+
+   
+
+
     }
 }
