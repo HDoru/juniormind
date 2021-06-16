@@ -15,12 +15,12 @@ namespace Json
 
         public IMatch Match(string text)
         {
-           if(!string.IsNullOrEmpty(text) || accepted.Contains(text[0]))
+           if(!string.IsNullOrEmpty(text) && accepted.Contains(text[0]))
             {
                 return new Match(text[1..], true);
             }
 
-           return new Match(text, true);
+           return new Match(text, false);
         }
     }
 }
