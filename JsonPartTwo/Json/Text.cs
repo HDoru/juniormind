@@ -6,7 +6,7 @@ namespace Json
 {
     public class Text : IPattern
     {
-        string prefix;
+        readonly string prefix;
 
         public Text(string prefix)
         {

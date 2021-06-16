@@ -4,26 +4,21 @@ using System.Text;
 
 namespace Json
 {
-   public class Many : IPattern
+    class Optional : IPattern
     {
         readonly IPattern pattern;
 
-        public Many(IPattern pattern)
+        public Optional(IPattern pattern)
         {
             this.pattern = pattern;
         }
+
 
         public IMatch Match(string text)
         {
             var match = pattern.Match(text);
 
-            while (match.Success())
-            {
-                text = match.RemainingText();
-                match = pattern.Match(text);
-            }
-
-            return new Match(text, true);
+            return new Match(match.RemainingText(), true);
         }
     }
 }
