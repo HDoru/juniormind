@@ -4,10 +4,10 @@ using System.Text;
 
 namespace Json
 {
-    class Range :IPattern
+   public class Range :IPattern
     {
         readonly char start;
-    readonly char end;
+       readonly char end;
 
     public Range(char start, char end)
     {

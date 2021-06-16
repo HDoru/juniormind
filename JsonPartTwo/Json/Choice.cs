@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Json
 {
-    class Choice
+   public class Choice
     {
         private IPattern[] patterns;
 
