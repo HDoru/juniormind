@@ -62,26 +62,6 @@ namespace JsonFacts
             Assert.Equal("", abc.Match("abc").RemainingText());
         }
 
-        [Fact]
-        public void CanContainMultipleChoices()
-        {
-            var hex = new Choice(
-                new Range('0', '9'),
-                new Range('a', 'f'),
-                new Range('A', 'F'));
-            var unicode = new Sequence(
-                new Character('u'),
-                hex,
-                hex,
-                hex,
-                hex);
-
-            Match match = (Match)unicode.Match("u043F");
-            Assert.True(match.Success());
-            Assert.Equal("", match.RemainingText());
-        }
-
-
 
     }
 }
