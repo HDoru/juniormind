@@ -26,7 +26,7 @@ namespace JsonFacts
         }
 
         [Fact]
-        public void TextNotMatch()
+        public void TextNotMatchReturnTrue()
         {
             var a = new Many(new Character('a'));
             Assert.True(a.Match("bcd").Success());
@@ -34,7 +34,7 @@ namespace JsonFacts
         }
 
         [Fact]
-        public void TextEmpty()
+        public void TextEmptyReturnTrue()
         {
             var a = new Many(new Character('a'));
             Assert.True(a.Match("").Success());
@@ -42,7 +42,7 @@ namespace JsonFacts
         }
 
         [Fact]
-        public void TextNull()
+        public void TextNullReturnTrue()
         {
             var a = new Many(new Character('a'));
             Assert.True(a.Match(null).Success());
