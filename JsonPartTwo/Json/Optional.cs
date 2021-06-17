@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Json
 {
-    class Optional : IPattern
+   public class Optional : IPattern
     {
         readonly IPattern pattern;
 
