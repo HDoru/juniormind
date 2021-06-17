@@ -15,11 +15,11 @@ namespace Json
 
         public IMatch Match(string text)
         {
-            if(string.IsNullOrEmpty(text) || !text.StartsWith(prefix))
+            if(string.IsNullOrEmpty(text) || text.Length < prefix.Length || !text.StartsWith(prefix))
             {
                 return new Match(text, false);
             }
-            return new Match(text[1..], true);
+            return new Match(text[prefix.Length..], true);
         }
 
     }
