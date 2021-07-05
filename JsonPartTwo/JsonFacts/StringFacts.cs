@@ -106,17 +106,19 @@ namespace JsonFacts
             String word = new Json.String();
             Assert.True(word.Match(Quoted(@"a \b b")).Success());
         }
-/*
+
         [Fact]
         public void CanContainEscapedFormFeed()
         {
-            Assert.True(IsJsonString(Quoted(@"a \f b")));
+            String word = new Json.String();
+            Assert.True(word.Match(Quoted(@"a \f b")).Success());
         }
 
         [Fact]
         public void CanContainEscapedLineFeed()
         {
-            Assert.True(IsJsonString(Quoted(@"a \n b")));
+            String word = new Json.String();
+            Assert.True(word.Match(Quoted(@"a \n b")).Success());
         }
 
         [Fact]
@@ -124,7 +126,7 @@ namespace JsonFacts
         {
             Assert.True(IsJsonString(Quoted(@"a \r b")));
         }
-
+/*
         [Fact]
         public void CanContainEscapedHorizontalTab()
         {
