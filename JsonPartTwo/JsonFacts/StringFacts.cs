@@ -76,6 +76,7 @@ namespace JsonFacts
         {
             String word = new Json.String();
             Assert.True(word.Match(Quoted("⛅⚾")).Success());
+            //Assert.Equal("", word.Match(Quoted("⛅⚾")).RemainingText());
         }
 
         [Fact]
@@ -134,31 +135,38 @@ namespace JsonFacts
             String word = new Json.String();
             Assert.True(word.Match(Quoted(@"a \t b")).Success());
         }
-/*
+
         [Fact]
         public void CanContainEscapedUnicodeCharacters()
         {
-            Assert.True(IsJsonString(Quoted(@"a \u26Be b")));
+            String word = new Json.String();
+            Assert.True(word.Match(Quoted(@"a \u26Be b")).Success());
+            Assert.Equal("", word.Match(Quoted(@"a \u26Be b")).RemainingText());
         }
 
         [Fact]
         public void DoesNotContainUnrecognizedExcapceCharacters()
         {
-            Assert.False(IsJsonString(Quoted(@"a\x")));
+            String word = new Json.String();
+            Assert.False (word.Match(Quoted(@"a\x")).Success());
         }
 
         [Fact]
         public void DoesNotEndWithReverseSolidus()
         {
-            Assert.False(IsJsonString(Quoted(@"a\")));
+            String word = new Json.String();
+            Assert.False(word.Match(Quoted(@"a\")).Success());
         }
 
         [Fact]
         public void DoesNotEndWithAnUnfinishedHexNumber()
         {
-            Assert.False(IsJsonString(Quoted(@"a\u")));
-            Assert.False(IsJsonString(Quoted(@"a\u123")));
-        }
+            String word = new Json.String();
+            Assert.False(word.Match(Quoted(@"a\u")).Success());
+
+            
+            Assert.False(word.Match(Quoted(@"a\u123")).Success());
+        }/*
 */
  
         public static string Quoted(string text)

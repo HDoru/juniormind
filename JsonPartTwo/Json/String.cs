@@ -11,30 +11,26 @@ namespace Json
         public String()
         {
             var hex = new Choice(
-
-                new Range('a', 'f'));
-              
+                new Range('0', '9'),
+                new Range('a', 'f'),
+                new Range('A', 'F'));
 
             var quote = new Character('"');
 
             var escape = new Choice(
-               new Any("\\\"/bfnrt"),
-               new Sequence(new Character('u'), hex, hex, hex, hex));
+                new Any("\\\"/bfnrt"),
+                new Sequence(new Character('u'), hex, hex, hex, hex));
 
             var character = new Choice(
-              new Range(' ', '\u0021'),
-              new Range('\u0023', '\u005B'),
-              new Range('\u005D', '\u0DE0'),
-              new Sequence(
-              new Character('\\'),
-              escape));
-            ;
+                new Range(' ', '\u0021'),
+                new Range('\u0023', '\uFFFF'),
+                new Sequence(new Character('\\'), escape));
+
+
             var characters = new Optional(
-                 new Sequence(character, new Many(character)));
+                new Sequence(character, new Many(character)));
 
             this.pattern = new Sequence(quote, characters, quote);
-
-
         }
 
         public IMatch Match(string text)
