@@ -17,10 +17,20 @@ namespace Json
 
             var quote = new Character('"');
 
-          
+            var escape = new Choice(
+               new Any("\\\"/bfnrt"),
+               new Sequence(new Character('u'), hex, hex, hex, hex));
+
+            var character = new Choice(
+              new Range(' ', '\u0021'),
+              new Range('\u0023', '\u005B'),
+              new Range('\u005D', '\u0DE0'),
+              new Sequence(
+              new Character('\\'),
+              escape));
             ;
             var characters = new Optional(
-                new Sequence(new Many(hex)));
+                 new Sequence(character, new Many(character)));
 
             this.pattern = new Sequence(quote, characters, quote);
 
