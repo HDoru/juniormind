@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 using Json;
+using String = Json.String;
 
 namespace JsonFacts
 {
@@ -16,43 +17,53 @@ namespace JsonFacts
             Assert.Equal("", word.Match(Quoted("abc")).RemainingText());
         }
 
-        /*[Fact]
+       [Fact]
         public void AlwaysStartsWithQuotes()
         {
-            Assert.False(IsJsonString("abc\""));
+            String word = new Json.String();
+            Assert.False(word.Match("abc\"").Success());
         }
 
         [Fact]
         public void AlwaysEndsWithQuotes()
         {
-            Assert.False(IsJsonString("\"abc"));
+            String word = new Json.String();
+            Assert.False(word.Match("\"abc").Success());
+         
         }
 
         [Fact]
         public void IsNotNull()
         {
-            Assert.False(IsJsonString(null));
+            String word = new Json.String();
+            Assert.False(word.Match(null).Success());
         }
 
         [Fact]
         public void IsNotAnEmptyString()
         {
-            Assert.False(IsJsonString(string.Empty));
+            String word = new Json.String();
+            Assert.False(word.Match(string.Empty).Success());
         }
 
         [Fact]
         public void IsAnEmptyDoubleQuotedString()
         {
-            Assert.True(IsJsonString(Quoted(string.Empty)));
+            String word = new Json.String();
+            Assert.True(word.Match(Quoted(string.Empty)).Success());
+            Assert.Equal("", word.Match(Quoted(string.Empty)).RemainingText());
+           
         }
 
         [Fact]
         public void HasStartAndEndQuotes()
         {
-            Assert.False(IsJsonString("\""));
+            String word = new Json.String();
+            Assert.False(word.Match("\"").Success());
+            
         }
 
-
+ /*
         [Fact]
         public void DoesNotContainControlCharacters()
         {
