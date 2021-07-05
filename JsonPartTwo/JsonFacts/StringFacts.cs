@@ -124,15 +124,17 @@ namespace JsonFacts
         [Fact]
         public void CanContainEscapedCarrigeReturn()
         {
-            Assert.True(IsJsonString(Quoted(@"a \r b")));
+            String word = new Json.String();
+            Assert.True(word.Match(Quoted(@"a \r b")).Success());
         }
-/*
+
         [Fact]
         public void CanContainEscapedHorizontalTab()
         {
-            Assert.True(IsJsonString(Quoted(@"a \t b")));
+            String word = new Json.String();
+            Assert.True(word.Match(Quoted(@"a \t b")).Success());
         }
-
+/*
         [Fact]
         public void CanContainEscapedUnicodeCharacters()
         {
