@@ -63,43 +63,50 @@ namespace JsonFacts
             
         }
 
- /*
+
         [Fact]
         public void DoesNotContainControlCharacters()
         {
-            Assert.False(IsJsonString(Quoted("a\nb\rc")));
+            String word = new Json.String();
+            Assert.False(word.Match(Quoted("a\nb\rc")).Success());
         }
-
+ 
         [Fact]
         public void CanContainLargeUnicodeCharacters()
         {
-            Assert.True(IsJsonString(Quoted("⛅⚾")));
+            String word = new Json.String();
+            Assert.True(word.Match(Quoted("⛅⚾")).Success());
         }
 
         [Fact]
         public void CanContainEscapedQuotationMark()
         {
-            Assert.True(IsJsonString(Quoted(@"\""a\"" b")));
+            String word = new Json.String();
+            Assert.True(word.Match(Quoted(@"\""a\"" b")).Success());
+          //  Assert.Equal(Quoted(""),word.Match(Quoted(@"\""a\"" b")).RemainingText());
         }
 
         [Fact]
         public void CanContainEscapedReverseSolidus()
         {
-            Assert.True(IsJsonString(Quoted(@"a \\ b")));
+            String word = new Json.String();
+            Assert.True(word.Match(Quoted(@"a \\ b")).Success());
         }
 
         [Fact]
         public void CanContainEscapedSolidus()
         {
-            Assert.True(IsJsonString(Quoted(@"a \/ b")));
+            String word = new Json.String();
+            Assert.True(word.Match(Quoted(@"a \/ b")).Success());
         }
 
         [Fact]
         public void CanContainEscapedBackspace()
         {
-            Assert.True(IsJsonString(Quoted(@"a \b b")));
+            String word = new Json.String();
+            Assert.True(word.Match(Quoted(@"a \b b")).Success());
         }
-
+/*
         [Fact]
         public void CanContainEscapedFormFeed()
         {
