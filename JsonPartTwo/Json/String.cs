@@ -4,8 +4,9 @@ using System.Text;
 
 namespace Json
 {
-   public class String:IPattern
+   public class String : IPattern
     {
+
         readonly IPattern pattern;
 
         public String()
@@ -23,10 +24,12 @@ namespace Json
 
             var character = new Choice(
                 new Range(' ', '\u0021'),
-                new Range('\u0023', '\uFFFF'),
-                new Sequence(new Character('\\'), escape));
-
-
+                new Range('\u0023', '\u005B'),
+                new Range('\u005D', '\uDFFF'),
+                new Sequence(
+                new Character('\\'),
+                escape));
+                                       ;
             var characters = new Optional(
                 new Sequence(character, new Many(character)));
 

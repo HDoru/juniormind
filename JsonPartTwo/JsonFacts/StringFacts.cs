@@ -76,7 +76,7 @@ namespace JsonFacts
         {
             String word = new Json.String();
             Assert.True(word.Match(Quoted("⛅⚾")).Success());
-            //Assert.Equal("", word.Match(Quoted("⛅⚾")).RemainingText());
+            Assert.Equal("", word.Match(Quoted("⛅⚾")).RemainingText());
         }
 
         [Fact]
@@ -84,7 +84,7 @@ namespace JsonFacts
         {
             String word = new Json.String();
             Assert.True(word.Match(Quoted(@"\""a\"" b")).Success());
-          //  Assert.Equal(Quoted(""),word.Match(Quoted(@"\""a\"" b")).RemainingText());
+            //Assert.Equal(Quoted(""),word.Match(Quoted(@"\""a\"" b")).RemainingText());
         }
 
         [Fact]
