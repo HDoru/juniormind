@@ -30,8 +30,8 @@ namespace Json
                 new Character('\\'),
                 escape));
                                        ;
-            var characters = new Optional(
-                new Sequence(character, new Many(character)));
+            var characters = 
+                new Sequence(character, new Many(character));
 
             this.pattern = new Sequence(quote, characters, quote);
         }
