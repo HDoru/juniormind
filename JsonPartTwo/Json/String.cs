@@ -25,13 +25,12 @@ namespace Json
             var character = new Choice(
                 new Range(' ', '\u0021'),
                 new Range('\u0023', '\u005B'),
-                new Range('\u005D', '\uDFFF'),
+                new Range('\u005D', '\uFFFF'),
                 new Sequence(
                 new Character('\\'),
                 escape));
                                        ;
-            var characters = 
-                new Sequence(character, new Many(character));
+            var characters = new Optional(new Sequence(character, new OneOrMore(character)));
 
             this.pattern = new Sequence(quote, characters, quote);
         }
