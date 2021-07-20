@@ -53,10 +53,37 @@ namespace JsonFacts
         }
 
         [Fact]
-        public void CanBeAnObject()
+        public void CanBeObject()
         {
             var value = new Value();
             var match = value.Match("{ \"ceva\" : 10 }");
+            Assert.True(match.Success());
+            Assert.Equal("", match.RemainingText());
+        }
+
+        [Fact]
+        public void CanBeEmptyObject()
+        {
+            var value = new Value();
+            var match = value.Match("{     }");
+            Assert.True(match.Success());
+            Assert.Equal("", match.RemainingText());
+        }
+
+        [Fact]
+        public void CanBeArray()
+        {
+            var value = new Value();
+            var match = value.Match("[42,2,40,10,7,9]");
+            Assert.True(match.Success());
+            Assert.Equal("", match.RemainingText());
+        }
+
+        [Fact]
+        public void CanBeEmptyArray()
+        {
+            var value = new Value();
+            var match = value.Match("[     ]");
             Assert.True(match.Success());
             Assert.Equal("", match.RemainingText());
         }

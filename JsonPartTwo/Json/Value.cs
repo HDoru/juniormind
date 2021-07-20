@@ -22,6 +22,13 @@ namespace Json
                 new Text("false"),
                 new Text("null"));
 
+            var array = new Sequence(
+               new Character('['),
+               ws,
+               new List(value, new Sequence(new Character(','), ws)),
+               ws,
+               new Character(']'));
+
             var element = new Sequence(
                ws,
                value,
@@ -44,7 +51,7 @@ namespace Json
                new Character('}'));
 
 
-
+            value.Add(array);
             value.Add(Object);
             pattern = new Sequence(ws, value, ws);
         }
