@@ -51,5 +51,14 @@ namespace JsonFacts
             Assert.True(match.Success());
             Assert.Equal("", match.RemainingText());
         }
+
+        [Fact]
+        public void CanBeAnObject()
+        {
+            var value = new Value();
+            var match = value.Match("{ \"ceva\" : 10 }");
+            Assert.True(match.Success());
+            Assert.Equal("", match.RemainingText());
+        }
     }
 }
