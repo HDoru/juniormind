@@ -83,7 +83,7 @@ namespace JsonFacts
         public void CanBeEmptyArray()
         {
             var value = new Value();
-            var match = value.Match("[     ]");
+            var match = value.Match("[  ]");
             Assert.True(match.Success());
             Assert.Equal("", match.RemainingText());
         }

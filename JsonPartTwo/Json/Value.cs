@@ -22,17 +22,20 @@ namespace Json
                 new Text("false"),
                 new Text("null"));
 
+
+            var element = new Sequence(
+          ws,
+         value,
+      ws);
+
             var array = new Sequence(
                new Character('['),
                ws,
-               new List(value, new Sequence(new Character(','), ws)),
+               new List(element, new Sequence(new Character(','))),
                ws,
                new Character(']'));
 
-            var element = new Sequence(
-               ws,
-               value,
-               ws);
+
 
 
             var member = new Sequence(
@@ -53,7 +56,7 @@ namespace Json
 
             value.Add(array);
             value.Add(Object);
-            pattern = new Sequence(ws, value, ws);
+            pattern = new Sequence(element);
         }
 
         public IMatch Match(string text)
