@@ -56,7 +56,7 @@ namespace Json
 
             value.Add(array);
             value.Add(Object);
-            pattern = new Sequence(element);
+            pattern = element;
         }
 
         public IMatch Match(string text)
